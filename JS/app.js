@@ -142,14 +142,10 @@ var myChart = new Chart(itemsCanvas, {
       {
       label: '# of items Clicks',
       data: arrayOfItemsCount,
-      backgroundColor: [
-        'rgba(255, 99, 132, 0.2)',
-        'rgba(54, 162, 235, 0.2)',
-        'rgba(255, 206, 86, 0.2)',
-        'rgba(75, 192, 192, 0.2)',
-        'rgba(153, 102, 255, 0.2)',
-        'rgba(255, 159, 64, 0.2)'
-      ],
+      backgroundColor: ["#3e95cd","#8e5ea2","#3cba9f","#e8c3b9",
+      "#c45850","#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850",
+      "#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850" 
+         ],
       borderColor: [
         'rgba(255, 99, 132, 1)',
         'rgba(54, 162, 235, 1)',
@@ -163,14 +159,9 @@ var myChart = new Chart(itemsCanvas, {
     {
       label: 'Time Items was shown',
       data: arrayOfItemsShown, 
-      backgroundColor: [
-        'rgba(255, 99, 132, 0.2)',
-        'rgba(54, 162, 235, 0.2)',
-        'rgba(255, 206, 86, 0.2)',
-        'rgba(75, 192, 192, 0.2)',
-        'rgba(153, 102, 255, 0.2)',
-        'rgba(255, 159, 64, 0.2)'
-      ],
+      backgroundColor: ["rgb(255,255,0)","rgb(255,255,0)","rgb(255,255,0)","rgb(255,255,0)","rgb(255,255,0)",
+      "rgb(255,255,0)","rgb(255,255,0)","rgb(255,255,0)","rgb(255,255,0)","rgb(255,255,0)","rgb(255,255,0)",
+      "rgb(255,255,0)","rgb(255,255,0)","rgb(255,255,0)","rgb(255,255,0)"],
       borderColor: [
         'rgba(255, 99, 132, 1)',
         'rgba(54, 162, 235, 1)',
