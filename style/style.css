@@ -6,6 +6,29 @@ section div {
     width: 350px;
     float: left;
 }
+section{
+    display: block;
+    margin-bottom: 30px;
+}
 img {
-width : 250px;
+    width : 300px;
+    height: 350px;
+
+
+}
+canvas {
+    display: block;
+    width: 400px;
+    height: 300px;
+}
+ul{
+    display: block;
+    width: 400px;
+
+}
+button{
+    display: block;
+}
+#the-container {
+margin-left: 11%;
 }
