@@ -12,7 +12,7 @@ var rightText = document.getElementById('right-one');
 var itemsSection = document.getElementById('the-container');
 
 var itemsCanvas = document.getElementById('itemsChart').getContext('2d');
-var clicksTimes = 25;
+var trails = 25;
 
 
 function Goods(name, image) {
@@ -66,8 +66,9 @@ function checkGoods(itemSelector) {
   for (var index = 0; index < arrayOfItems.length; index++) {
     if (arrayOfItems[index].url === itemSelector) {
       arrayOfItems[index].clicks++;
-      clicksTimes--;
+      trails--;
     }
+    storeVotes();
   }
 }
 
@@ -75,7 +76,7 @@ chooseGood();
 
 function shownItems(leftImage, centerImage, rightImage) {
   arrayOfItems[leftImage].showen++;
-  console.log(arrayOfItems[leftImage].showen++);
+  console.log(arrayOfItems[leftImage]);
   arrayOfItems[centerImage].showen++;
   arrayOfItems[rightImage].showen++;
 
@@ -84,7 +85,7 @@ function countImage(event) {
 
   var targetId = event.target.id;
 
-  if (clicksTimes !== 0) {
+  if (trails !== 0) {
 
     if (targetId === "left-img" || "center-img" || "right-img") {
       var itemsSelector = event.target.getAttribute('src');
@@ -120,68 +121,99 @@ button.addEventListener('click', function () {
 
 
 
-function renderchart(){
+function renderchart() {
 
-var arrayOfItemsName = [];
-var arrayOfItemsCount = [];
-var arrayOfItemsShown = [];
+  var arrayOfItemsName = [];
+  var arrayOfItemsCount = [];
+  var arrayOfItemsShown = [];
 
 
-for (var index = 0; index < arrayOfItems.length; index++) {
-  arrayOfItemsName.push(arrayOfItems[index].name);
-  arrayOfItemsCount.push(arrayOfItems[index].clicks);
-  arrayOfItemsShown.push(arrayOfItems[index].showen);
-  
-}
+  for (var index = 0; index < arrayOfItems.length; index++) {
+    arrayOfItemsName.push(arrayOfItems[index].name);
+    arrayOfItemsCount.push(arrayOfItems[index].clicks);
+    arrayOfItemsShown.push(arrayOfItems[index].showen);
 
-var myChart = new Chart(itemsCanvas, {
-  type: 'bar',
-  data: {
-    labels: arrayOfItemsName,
-    datasets: [
-      {
-      label: '# of items Clicks',
-      data: arrayOfItemsCount,
-      backgroundColor: ["#3e95cd","#8e5ea2","#3cba9f","#e8c3b9",
-      "#c45850","#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850",
-      "#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850" 
-         ],
-      borderColor: [
-        'rgba(255, 99, 132, 1)',
-        'rgba(54, 162, 235, 1)',
-        'rgba(255, 206, 86, 1)',
-        'rgba(75, 192, 192, 1)',
-        'rgba(153, 102, 255, 1)',
-        'rgba(255, 159, 64, 1)'
-      ],
-      borderWidth: 1
-    },
-    {
-      label: 'Time Items was shown',
-      data: arrayOfItemsShown, 
-      backgroundColor: ["rgb(255,255,0)","rgb(255,255,0)","rgb(255,255,0)","rgb(255,255,0)","rgb(255,255,0)",
-      "rgb(255,255,0)","rgb(255,255,0)","rgb(255,255,0)","rgb(255,255,0)","rgb(255,255,0)","rgb(255,255,0)",
-      "rgb(255,255,0)","rgb(255,255,0)","rgb(255,255,0)","rgb(255,255,0)"],
-      borderColor: [
-        'rgba(255, 99, 132, 1)',
-        'rgba(54, 162, 235, 1)',
-        'rgba(255, 206, 86, 1)',
-        'rgba(75, 192, 192, 1)',
-        'rgba(153, 102, 255, 1)',
-        'rgba(255, 159, 64, 1)'
-      ],
-      borderWidth: 1
-    }]
-  },
-  options: {
-    scales: {
-      yAxes: [{
-        ticks: {
-          beginAtZero: true
-        }
-      }]
-    }
   }
-});
+
+  var myChart = new Chart(itemsCanvas, {
+    type: 'bar',
+    data: {
+      labels: arrayOfItemsName,
+      datasets: [
+        {
+          label: '# of items Clicks',
+          data: arrayOfItemsCount,
+          backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9",
+            "#c45850", "#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850",
+            "#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850"
+          ],
+          borderColor: [
+            'rgba(255, 99, 132, 1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(255, 206, 86, 1)',
+            'rgba(75, 192, 192, 1)',
+            'rgba(153, 102, 255, 1)',
+            'rgba(255, 159, 64, 1)'
+          ],
+          borderWidth: 1
+        },
+        {
+          label: 'Time Items was shown',
+          data: arrayOfItemsShown,
+          backgroundColor: ["rgb(255,255,0)", "rgb(255,255,0)", "rgb(255,255,0)", "rgb(255,255,0)", "rgb(255,255,0)",
+            "rgb(255,255,0)", "rgb(255,255,0)", "rgb(255,255,0)", "rgb(255,255,0)", "rgb(255,255,0)", "rgb(255,255,0)",
+            "rgb(255,255,0)", "rgb(255,255,0)", "rgb(255,255,0)", "rgb(255,255,0)"],
+          borderColor: [
+            'rgba(255, 99, 132, 1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(255, 206, 86, 1)',
+            'rgba(75, 192, 192, 1)',
+            'rgba(153, 102, 255, 1)',
+            'rgba(255, 159, 64, 1)'
+          ],
+          borderWidth: 1
+        }]
+    },
+    options: {
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: true
+          }
+        }]
+      }
+    }
+  });
 }
 
+
+
+function storeVotes() {
+
+  localStorage.setItem('our Items', JSON.stringify(arrayOfItems));
+
+}
+
+
+function getVotes() {
+
+  if (localStorage.length > 0) {
+
+
+    var prodactArray = localStorage.getItem('our Items');
+
+    arrayOfItems = JSON.parse(prodactArray);
+
+    renderchart();
+  }
+
+}
+
+console.log('list');
+getVotes();
+
+// function checkAndRestore() {
+
+//   
+// }
+// checkAndRestore();
